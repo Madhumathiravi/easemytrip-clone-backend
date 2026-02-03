@@ -16,7 +16,7 @@ export const searchHotels = async (req, res) => {
     const filter = {};
 
     if (city) {
-      filter.city = { $regex: city, $options: "i" };
+      filter.city = { $regex: `^${city}$`, $options: "i" };
     }
 
     if (name) {

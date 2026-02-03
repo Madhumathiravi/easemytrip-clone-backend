@@ -1,46 +1,86 @@
 
+// import mongoose from "mongoose";
+
+// const roomSchema = new mongoose.Schema({
+//   type: String,        
+//   price: Number,     
+//   totalRooms: Number,  
+// });
+
+// const hotelSchema = new mongoose.Schema(
+//   {
+//     name: {
+//       type: String,
+//       required: true,
+//     },
+
+//     city: {
+//       type: String,
+//       required: true,
+//       index: true,
+//     },
+
+//     country: {
+//       type: String,
+//       required: true,
+//     },
+
+//     address: String,
+
+//     rating: {
+//       type: Number,
+//       default: 0,
+//     },
+
+//     amenities: [String],
+
+//     // ✅ ADD THIS
+//     images: {
+//       type: [String],   // array of image URLs
+//       default: [],
+//     },
+
+//     rooms: [roomSchema],
+//   },
+//   { timestamps: true }
+// );
+
+// export default mongoose.model("Hotel", hotelSchema);
 import mongoose from "mongoose";
 
 const roomSchema = new mongoose.Schema({
-  type: String,        
-  price: Number,     
-  totalRooms: Number,  
+  type: {
+    type: String,
+    required: true,
+  },
+  basePrice: {
+    type: Number,
+    required: true,
+  },
+  maxGuests: {
+    type: Number,
+    required: true,
+  },
+  totalRooms: {
+    type: Number,
+    required: true,
+  },
+  mealsIncluded: {
+    type: [String],
+    default: [],
+  },
 });
 
 const hotelSchema = new mongoose.Schema(
   {
-    name: {
-      type: String,
-      required: true,
-    },
-
-    city: {
-      type: String,
-      required: true,
-      index: true,
-    },
-
-    country: {
-      type: String,
-      required: true,
-    },
-
+    name: { type: String, required: true },
+    city: { type: String, required: true, index: true },
+    country: { type: String, required: true },
     address: String,
-
-    rating: {
-      type: Number,
-      default: 0,
-    },
-
-    amenities: [String],
-
-    // ✅ ADD THIS
-    images: {
-      type: [String],   // array of image URLs
-      default: [],
-    },
-
-    rooms: [roomSchema],
+    rating: { type: Number, default: 0 },
+    amenities: { type: [String], default: [] },
+    images: { type: [String], default: [] },
+    rooms: { type: [roomSchema], required: true },
   },
   { timestamps: true }
 );
