@@ -12,7 +12,6 @@ export const getHotels = async (req, res) => {
 export const searchHotels = async (req, res) => {
   try {
     const { city, name, guests } = req.query;
-
     const filter = {};
 
     if (city) {
@@ -24,12 +23,18 @@ export const searchHotels = async (req, res) => {
     }
 
     if (guests) {
-      filter.rooms = { $gt: 0 };
+      filter.rooms = {
+        $elemMatch: {
+          maxGuests: { $gte: Number(guests) },
+          totalRooms: { $gt: 0 },
+        },
+      };
     }
 
     const hotels = await Hotel.find(filter);
     res.json(hotels);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: "Search failed" });
   }
 };
