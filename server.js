@@ -1,40 +1,4 @@
-// import express from "express";
-// import mongoose from "mongoose";
-// import cors from "cors";
-// import dotenv from "dotenv";
-// import authRoutes from "./routes/auth.routes.js";
-// import hotelRoutes from "./routes/hotel.routes.js";
 
-// dotenv.config();
-
-// const app = express();
-// app.use("/api/hotels", hotelRoutes);
-
-
-// // middleware
-// app.use(cors());
-// app.use(express.json());
-
-// app.use(
-//   cors({
-//     origin: "http://localhost:5173",
-//     credentials: true,
-//   })
-// );
-
-// // routes
-// app.use("/api/auth", authRoutes);
-
-// // db
-// mongoose
-//   .connect(process.env.MONGO_URI)
-//   .then(() => console.log("MongoDB connected (local)"))
-//   .catch((err) => console.error(err));
-
-// // server
-// app.listen(5000, () => {
-//   console.log("Server running on 5000");
-// });
 
 import express from "express";
 import mongoose from "mongoose";
@@ -42,12 +6,15 @@ import cors from "cors";
 import dotenv from "dotenv";
 import authRoutes from "./routes/auth.routes.js";
 import hotelRoutes from "./routes/hotel.routes.js";
+import hotelUploadRoutes from "./routes/hotels.upload.js";
+
+app.use("/api", hotelUploadRoutes);
 
 dotenv.config();
 
 const app = express();
 
-/* ✅ CORS MUST be here */
+/*cors */
 app.use(
   cors({
     origin: "http://localhost:5173",
