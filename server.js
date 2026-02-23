@@ -7,12 +7,13 @@ import dotenv from "dotenv";
 import authRoutes from "./routes/auth.routes.js";
 import hotelRoutes from "./routes/hotel.routes.js";
 import hotelUploadRoutes from "./routes/hotels.upload.js";
-
+dotenv.config();
+const app = express();
 app.use("/api", hotelUploadRoutes);
 
-dotenv.config();
 
-const app = express();
+
+
 
 /*cors */
 app.use(
