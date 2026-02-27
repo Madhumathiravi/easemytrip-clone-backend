@@ -19,11 +19,11 @@ async function seedHotels() {
     rating: 4,
     review: 4.8,
     nofReview: 245,
-
+    
     price: 2000,
     discount: 20,
     tax: 182,
-
+    extras: ["Couple Friendly"],
     amenities: [
       "Restaurant",
       "Free Wifi",
